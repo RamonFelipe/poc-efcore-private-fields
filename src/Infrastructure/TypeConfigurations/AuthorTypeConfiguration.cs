@@ -8,10 +8,10 @@ namespace Infrastructure.TypeConfigurations
     {
         public void Configure(EntityTypeBuilder<Author> builder)
         {
-            builder.ToTable("authors");
-            builder.HasKey("id");
-            builder.Property("name").IsRequired();
-            builder.HasMany("books").WithOne().HasForeignKey("author_id");
+            builder.ToTable("authors2");
+            builder.HasKey("_id");
+            builder.Property("_name").IsRequired();
+            builder.HasMany("_books").WithOne().HasForeignKey("author_id");
         }
     }
 }

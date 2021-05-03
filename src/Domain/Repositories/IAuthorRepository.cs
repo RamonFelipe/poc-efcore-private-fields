@@ -1,9 +1,12 @@
-using Domain;
 using System;
 using System.Threading.Tasks;
 
-public interface IAuthorRepository
+namespace Domain.Repositories
 {
-    Task Add(Author author);
-    Task<Author> GetById(Guid id);
+    public interface IAuthorRepository
+    {
+        Task AddAsync(Author author);
+        Task<Author> GetByIdAsync(Guid id);
+        Task SaveChangeAsync();
+    }
 }

@@ -1,23 +1,37 @@
 using System;
+using System.Linq;
 using System.Threading.Tasks;
 using Domain;
+using Domain.Repositories;
+using Infrastructure.Context;
+using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Repositories
 {
     public class AuthorRepository : IAuthorRepository
     {
-        public AuthorRepository()
+        private readonly POC_Context context;
+        private readonly DbSet<Author> dbSet;
+
+        public AuthorRepository(POC_Context context)
         {
+            this.context = context;
+            this.dbSet = this.context.Set<Author>();
         }
 
-        public Task Add(Author author)
+        public async Task AddAsync(Author author)
         {
-            throw new NotImplementedException();
+            await this.dbSet.AddAsync(author);
         }
 
-        public Task<Author> GetById(Guid id)
+        public async Task<Author> GetByIdAsync(Guid id)
         {
-            throw new NotImplementedException();
+            return await this.dbSet.FindAsync(id);
+        }
+
+        public async Task SaveChangeAsync()
+        {
+            await this.context.SaveChangesAsync();
         }
     }
 }

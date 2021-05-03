@@ -4,17 +4,27 @@ namespace Domain
 {
     public class Book
     {
-        private Guid id;
-        private string name;
+        private Guid _id;
+        private string _name;
 
         public Book()
         {
-            this.id = Guid.NewGuid();
+            this._id = Guid.NewGuid();
         }
 
         public void SetName(string name)
         {
-            this.name = name;
+            this._name = name;
+        }
+
+        public Guid GetId()
+        {
+            return _id;
+        }
+
+        public string GetName()
+        {
+            return _name;
         }
     }
 }

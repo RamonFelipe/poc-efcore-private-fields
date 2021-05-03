@@ -1,3 +1,4 @@
+using System;
 using Domain;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
@@ -8,9 +9,9 @@ namespace Infrastructure.TypeConfigurations
     {
         public void Configure(EntityTypeBuilder<Book> builder)
         {
-            builder.ToTable("books");
-            builder.HasKey("id");
-            builder.Property("name").IsRequired();
+            builder.ToTable("books2");
+            builder.HasKey("_id");
+            builder.Property("_name").IsRequired();
             builder.Property("author_id");
         }
     }

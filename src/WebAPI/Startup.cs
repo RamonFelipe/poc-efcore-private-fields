@@ -1,15 +1,14 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using Application.Services.Implementations;
+using Application.Services.Interfaces;
+using Domain.Repositories;
+using Infrastructure.Context;
+using Infrastructure.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 
 namespace WebAPI
@@ -31,6 +30,12 @@ namespace WebAPI
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "WebAPI", Version = "v1" });
+            });
+            services.AddTransient<IAuthorService, AuthorService>();
+            services.AddTransient<IAuthorRepository, AuthorRepository>();
+            services.AddDbContext<POC_Context>(options =>
+            {
+                options.UseSqlServer("Server=localhost;Database=POC;User Id=poc_private_fields_user;Password=AgoraVai@123");
             });
         }
 
