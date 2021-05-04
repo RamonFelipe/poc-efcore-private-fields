@@ -26,7 +26,7 @@ namespace Infrastructure.Repositories
 
         public async Task<Author> GetByIdAsync(Guid id)
         {
-            return await this.dbSet.FindAsync(id);
+            return this.dbSet.Include("books").FirstOrDefault(x => EF.Property<Guid>(x, "id") == id);
         }
 
         public async Task SaveChangeAsync()
